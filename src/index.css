@@ -1,3 +1,19 @@
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+:root {
+  --color-primary-lightest: #d4d2fb;
+  --color-primary: #6f6af0;
+
+  --color-secondary: #40d6ed;
+  --color-secondary-dark: #3ac1d5;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,11 +28,105 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
+  color: #444;
+  background-color: #f3f3f3;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 6.4rem auto;
+}
+
+.section {
+  margin-bottom: 6.4rem;
+}
+
+h2 {
+  margin-bottom: 2.4rem;
+  font-size: 3.6rem;
+  letter-spacing: -0.5px;
+}
+
+.btn {
+  border-radius: 1.6rem;
+  border: none;
+  background-color: var(--color-secondary);
+  color: #333;
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn--round {
+  border-radius: 50%;
+  border: none;
 }
 
 /* -------------------------------------------------------------- */
 /* COMPONENT STYLES */
 /* -------------------------------------------------------------- */
 
+/* NAVIGATION */
+
 /* HEADER */
+.header {
+  border-top: 80px solid var(--color-primary);
+}
+
+/* CALCULATOR */
+
+.calculator {
+  padding: 1.6rem 0;
+  background-color: #fff;
+  border-radius: 1.6rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
+}
+
+.calculator,
+.form__select,
+.form__input {
+  font-size: 1.8rem;
+}
+
+.form__segment {
+  padding: 0.8rem 4rem;
+  border-right: 2.5px solid var(--color-primary-lightest);
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.form__segment--btn {
+  border-right: none;
+  flex-grow: 0;
+}
+
+.form__segment--distance .form__inputs {
+  width: 24rem;
+}
+
+.form__label {
+  font-size: 2.4rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.form__select {
+  margin-right: 1.2rem;
+}
+
+.form__input {
+  width: 6rem;
+}
