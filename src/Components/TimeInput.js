@@ -20,10 +20,10 @@ function TimeInput({
       {!isFirstEl && <span> : </span>}
       <input
         className={`form__input form__input--${name}`}
-        type="number"
+        type="text"
         name={name}
-        min={0}
-        max={!isFirstEl ? 59 : undefined}
+        // min={0}
+        // max={!isFirstEl ? 59 : undefined}
         placeholder={placeholder}
         aria-labelledby={`label-${labelName}`}
         value={curValue}

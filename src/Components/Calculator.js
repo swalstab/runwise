@@ -8,28 +8,36 @@ function Calculator() {
   const [distance, setDistance] = useState(5);
   const [showInputDist, setShowInputDist] = useState(false);
   const [inputDistIsDisabled, setInputDistIsDisabled] = useState(true);
-  const [time, setTime] = useState({ hour: 0, min: 20, sec: 0 });
-  const [pace, setPace] = useState({ min: 4, sec: 0 });
+  const [time, setTime] = useState({ hour: "00", min: "20", sec: "00" });
+  const [pace, setPace] = useState({ min: "04", sec: "00" });
 
   const convertMiToKm = 1.60934;
   const convertDistance = unit === "mi" ? convertMiToKm : 1;
 
   const calcPace = function (distance, time) {
-    const timeTotal = time.hour * 60 + time.min + time.sec / 60;
+    const timeTotal =
+      Number(time.hour) * 60 + Number(time.min) + Number(time.sec) / 60;
     const paceTotal = timeTotal / distance;
     const paceMin = Math.floor(paceTotal);
     const paceSec = Math.round((paceTotal - paceMin) * 60);
-    const newPace = { min: paceMin, sec: paceSec };
+    const newPace = {
+      min: `${paceMin}`.padStart(2, "0"),
+      sec: `${paceSec}`.padStart(2, "0"),
+    };
     setPace(newPace);
   };
 
   const calcTime = function (distance, pace) {
-    const paceTotal = pace.min + pace.sec / 60;
+    const paceTotal = Number(pace.min) + Number(pace.sec) / 60;
     const timeTotal = paceTotal * distance;
     const timeHour = Math.floor(timeTotal / 60);
     const timeMin = Math.floor(timeTotal - timeHour * 60);
     const timeSec = Math.round((timeTotal - timeHour * 60 - timeMin) * 60);
-    const newTime = { hour: timeHour, min: timeMin, sec: timeSec };
+    const newTime = {
+      hour: `${timeHour}`.padStart(2, "0"),
+      min: `${timeMin}`.padStart(2, "0"),
+      sec: `${timeSec}`.padStart(2, "0"),
+    };
     setTime(newTime);
   };
 
@@ -68,7 +76,7 @@ function Calculator() {
 
   const handleTimeChange = function (changedField, newValue) {
     const changedInputField = changedField.split("_")[1];
-    const newTime = { ...time, [changedInputField]: Number(newValue) };
+    const newTime = { ...time, [changedInputField]: newValue };
     setTime(newTime);
 
     calcPace(distance, newTime);
@@ -76,7 +84,7 @@ function Calculator() {
 
   const handlePaceChange = function (changedField, newValue) {
     const changedInputField = changedField.split("_")[1];
-    const newPace = { ...pace, [changedInputField]: Number(newValue) };
+    const newPace = { ...pace, [changedInputField]: newValue };
     setPace(newPace);
 
     calcTime(distance, newPace);
@@ -85,7 +93,7 @@ function Calculator() {
   return (
     <section className="section section__calculator">
       <h2>Pace Calculator</h2>
-      <form className="calculator">
+      <form className="calculator" onSubmit={(e) => e.preventDefault()}>
         <DistanceSegment
           distance={distance}
           unit={unit}
