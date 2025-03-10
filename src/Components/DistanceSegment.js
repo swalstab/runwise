@@ -1,7 +1,14 @@
-function DistanceSegment() {
-  const unit = "km";
-  const convertMiToKm = 1.60934;
+import DistanceInput from "./DistanceInput.js";
 
+function DistanceSegment({
+  distance,
+  unit,
+  convertMiToKm,
+  showInputDist,
+  inputDistIsDisabled,
+  onDistanceSelect,
+  onDistanceChange,
+}) {
   return (
     <section className="form__segment form__segment--distance">
       <div>
@@ -9,7 +16,7 @@ function DistanceSegment() {
           Distance
         </label>
         <div className="form__inputs">
-          <select className="form__select">
+          <select className="form__select" onChange={onDistanceSelect}>
             <option value={5}>5 km</option>
             <option value={10}>10 km</option>
             <option value="Half Marathon">Half Marathon</option>
@@ -20,14 +27,14 @@ function DistanceSegment() {
             <option value={100 * convertMiToKm}>100 mi</option>
             <option value="Custom">Custom</option>
           </select>
-          <input
-            className="form__input form__input--distance"
-            type="number"
-            name="distance"
-            placeholder="100"
-            aria-labelledby="label-distance"
-          ></input>
-          <span> {unit}</span>
+          {showInputDist && (
+            <DistanceInput
+              distance={distance}
+              unit={unit}
+              inputDistIsDisabled={inputDistIsDisabled}
+              onDistanceChange={onDistanceChange}
+            />
+          )}
         </div>
       </div>
     </section>

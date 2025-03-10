@@ -1,13 +1,13 @@
 import TimeInput from "./TimeInput.js";
 
-function TimeSegment({ name, hasHour }) {
+function TimeSegment({ name, hasHour, values, onTimeChange, onPaceChange }) {
   const timeParts = [
-    { name: "min", placeholder: "mm" },
-    { name: "sec", placeholder: "ss" },
+    { name: "min", placeholder: "mm", value: values.min },
+    { name: "sec", placeholder: "ss", value: values.sec },
   ];
 
   const timePartsAdjusted = hasHour
-    ? [{ name: "hour", placeholder: "hh" }, ...timeParts]
+    ? [{ name: "hour", placeholder: "hh", value: values.hour }, ...timeParts]
     : timeParts;
 
   return (
@@ -19,11 +19,14 @@ function TimeSegment({ name, hasHour }) {
         <div className="form__inputs">
           {timePartsAdjusted.map((part, idx) => (
             <TimeInput
-              key={part.name}
-              name={part.name}
+              key={`${name}_${part.name}`}
+              name={`${name}_${part.name}`}
               placeholder={part.placeholder}
               labelName={name}
               isFirstEl={idx === 0 ? true : false}
+              curValue={part.value}
+              onTimeChange={onTimeChange}
+              onPaceChange={onPaceChange}
             />
           ))}
         </div>
