@@ -35,7 +35,3 @@ To run the project locally, follow these steps:
    npm start
    ```
    This will launch the application in your default browser.
-
-## License
-
-TODO: fill with the right license
