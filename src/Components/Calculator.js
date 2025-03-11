@@ -1,10 +1,11 @@
 import { useState } from "react";
+import ToggleButton from "./ToggleButton.js";
 import DistanceSegment from "./DistanceSegment.js";
 import TimeSegment from "./TimeSegment.js";
 
 function Calculator() {
-  const unit = "km";
-  // const [unit, setUnit] = useState("km");
+  const [isToggled, setIsToggled] = useState(false);
+  const [unit, setUnit] = useState("km");
   const [distance, setDistance] = useState(5);
   const [showInputDist, setShowInputDist] = useState(false);
   const [inputDistIsDisabled, setInputDistIsDisabled] = useState(true);
@@ -22,6 +23,18 @@ function Calculator() {
       sec: `${paceSec}`.padStart(2, "0"),
     };
     setPace(newPace);
+  };
+
+  const updateTime = function (time) {
+    const timeHour = Number(time.hour);
+    const timeMin = Number(time.min);
+    const timeSec = Number(time.sec);
+    const newTime = {
+      hour: `${timeHour}`.padStart(2, "0"),
+      min: `${timeMin}`.padStart(2, "0"),
+      sec: `${timeSec}`.padStart(2, "0"),
+    };
+    setTime(newTime);
   };
 
   const calcAndUpdatePace = function (distance, time) {
@@ -49,6 +62,18 @@ function Calculator() {
       sec: `${timeSec}`.padStart(2, "0"),
     };
     setTime(newTime);
+  };
+
+  const handleToggleButton = function () {
+    setIsToggled(!isToggled);
+    const newDistance =
+      unit === "km" ? distance / convertMiToKm : distance * convertMiToKm;
+
+    setUnit((unit) => (unit === "km" ? "mi" : "km"));
+    setDistance(`${newDistance.toFixed(2)}`);
+
+    calcAndUpdatePace(newDistance, time);
+    updateTime(time);
   };
 
   const handleDistanceSelect = function (e) {
@@ -107,6 +132,7 @@ function Calculator() {
   return (
     <section className="section section__calculator">
       <h2>Pace Calculator</h2>
+      <ToggleButton isToggled={isToggled} onToggleButton={handleToggleButton} />
       <form className="calculator" onSubmit={(e) => e.preventDefault()}>
         <DistanceSegment
           distance={distance}
