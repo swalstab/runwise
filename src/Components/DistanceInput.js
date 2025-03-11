@@ -10,9 +10,9 @@ function DistanceInput({
     <>
       <input
         className="form__input form__input--distance"
-        type="number"
-        name="distance"
-        placeholder="100"
+        type="text"
+        name="dist"
+        placeholder="distance"
         aria-labelledby="label-distance"
         style={styleDisabled}
         value={distance}

@@ -14,10 +14,20 @@ function Calculator() {
   const convertMiToKm = 1.60934;
   const convertDistance = unit === "mi" ? convertMiToKm : 1;
 
-  const calcPace = function (distance, time) {
+  const updatePace = function (pace) {
+    const paceMin = Number(pace.min);
+    const paceSec = Number(pace.sec);
+    const newPace = {
+      min: `${paceMin}`.padStart(2, "0"),
+      sec: `${paceSec}`.padStart(2, "0"),
+    };
+    setPace(newPace);
+  };
+
+  const calcAndUpdatePace = function (distance, time) {
     const timeTotal =
       Number(time.hour) * 60 + Number(time.min) + Number(time.sec) / 60;
-    const paceTotal = timeTotal / distance;
+    const paceTotal = timeTotal / Number(distance);
     const paceMin = Math.floor(paceTotal);
     const paceSec = Math.round((paceTotal - paceMin) * 60);
     const newPace = {
@@ -27,9 +37,9 @@ function Calculator() {
     setPace(newPace);
   };
 
-  const calcTime = function (distance, pace) {
+  const calcAndUpdateTime = function (distance, pace) {
     const paceTotal = Number(pace.min) + Number(pace.sec) / 60;
-    const timeTotal = paceTotal * distance;
+    const timeTotal = paceTotal * Number(distance);
     const timeHour = Math.floor(timeTotal / 60);
     const timeMin = Math.floor(timeTotal - timeHour * 60);
     const timeSec = Math.round((timeTotal - timeHour * 60 - timeMin) * 60);
@@ -61,17 +71,21 @@ function Calculator() {
       setInputDistIsDisabled(true);
     }
     if (value === "Custom") {
-      newDistance = "";
+      newDistance = 150;
       setShowInputDist(true);
       setInputDistIsDisabled(false);
     }
 
-    setDistance(newDistance);
-    calcPace(newDistance, time);
+    setDistance(`${newDistance}`);
+    calcAndUpdateTime(newDistance, pace);
+    updatePace(pace);
   };
 
   const handleDistanceChange = function (e) {
-    setDistance(Number(e.target.value));
+    const newDistance = Number(e.target.value);
+    setDistance(`${newDistance}`);
+    calcAndUpdateTime(newDistance, pace);
+    updatePace(pace);
   };
 
   const handleTimeChange = function (changedField, newValue) {
@@ -79,7 +93,7 @@ function Calculator() {
     const newTime = { ...time, [changedInputField]: newValue };
     setTime(newTime);
 
-    calcPace(distance, newTime);
+    calcAndUpdatePace(distance, newTime);
   };
 
   const handlePaceChange = function (changedField, newValue) {
@@ -87,7 +101,7 @@ function Calculator() {
     const newPace = { ...pace, [changedInputField]: newValue };
     setPace(newPace);
 
-    calcTime(distance, newPace);
+    calcAndUpdateTime(distance, newPace);
   };
 
   return (
