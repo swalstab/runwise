@@ -118,16 +118,16 @@ function Calculator() {
           onDistanceChange={handleDistanceChange}
         />
         <TimeSegment
-          name="time"
-          hasHour={true}
-          values={time}
-          onTimeChange={handleTimeChange}
-        />
-        <TimeSegment
           name="pace"
           hasHour={false}
           values={pace}
           onPaceChange={handlePaceChange}
+        />
+        <TimeSegment
+          name="time"
+          hasHour={true}
+          values={time}
+          onTimeChange={handleTimeChange}
         />
 
         <section className="form__segment form__segment--btn">
