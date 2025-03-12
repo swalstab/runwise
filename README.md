@@ -36,6 +36,7 @@ To run the project locally, follow these steps:
    ```
    This will launch the application in your default browser.
 
+
 ## Screenshots
 
 ![](./docs/images/runwise_calculator.png)
