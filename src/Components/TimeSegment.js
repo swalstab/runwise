@@ -1,6 +1,13 @@
 import TimeInput from "./TimeInput.js";
 
-function TimeSegment({ name, hasHour, values, onTimeChange, onPaceChange }) {
+function TimeSegment({
+  children,
+  name,
+  hasHour,
+  values,
+  onTimeChange,
+  onPaceChange,
+}) {
   const timeParts = [
     { name: "min", placeholder: "mm", value: values.min },
     { name: "sec", placeholder: "ss", value: values.sec },
@@ -16,6 +23,7 @@ function TimeSegment({ name, hasHour, values, onTimeChange, onPaceChange }) {
         <label className="form__label" id={`label-${name}`}>
           {name[0].toUpperCase() + name.slice(1)}
         </label>
+        {children}
         <div className="form__inputs">
           {timePartsAdjusted.map((part, idx) => (
             <TimeInput

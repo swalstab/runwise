@@ -4,8 +4,8 @@ import DistanceSegment from "./DistanceSegment.js";
 import TimeSegment from "./TimeSegment.js";
 
 function Calculator() {
-  const [isToggled, setIsToggled] = useState(false);
   const [unit, setUnit] = useState("km");
+  const [isToggled, setIsToggled] = useState(false);
   const [distance, setDistance] = useState(5);
   const [showInputDist, setShowInputDist] = useState(false);
   const [inputDistIsDisabled, setInputDistIsDisabled] = useState(true);
@@ -148,7 +148,9 @@ function Calculator() {
           hasHour={false}
           values={pace}
           onPaceChange={handlePaceChange}
-        />
+        >
+          <span className="smal-font"> (min/{unit})</span>
+        </TimeSegment>
         <TimeSegment
           name="time"
           hasHour={true}
