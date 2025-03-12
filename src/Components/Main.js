@@ -1,11 +1,11 @@
 import Calculator from "./Calculator.js";
-import History from "./History.js";
+import SavedResults from "./SavedResults.js";
 
 function Main() {
   return (
     <main className="container">
       <Calculator />
-      <History />
+      <SavedResults />
     </main>
   );
 }
