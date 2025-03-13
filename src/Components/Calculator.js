@@ -4,75 +4,97 @@ import DistanceSegment from "./DistanceSegment.js";
 import TimeSegment from "./TimeSegment.js";
 
 function Calculator() {
-  const [unit, setUnit] = useState("km");
-  const [isToggled, setIsToggled] = useState(false);
-  const [distance, setDistance] = useState(5);
-  const [showInputDist, setShowInputDist] = useState(false);
-  const [inputDistIsDisabled, setInputDistIsDisabled] = useState(true);
-  const [time, setTime] = useState({ hour: "00", min: "20", sec: "00" });
-  const [pace, setPace] = useState({ min: "04", sec: "00" });
-
   const convertMiToKm = 1.60934;
-  const convertDistance = unit === "mi" ? convertMiToKm : 1;
+
+  const [unit, setUnit] = useState("km");
+  const [unitIsToggled, setUnitIsToggled] = useState(false);
+  const [distance, setDistance] = useState("5");
+  const [showDist, setShowDist] = useState(false);
+  const [showInputDist, setShowInputDist] = useState(false);
+  const [inputDistance, setInputDistance] = useState("150");
+  const [time, setTime] = useState({
+    hour: "00",
+    min: "20",
+    sec: "00",
+    secTotal: 0,
+  });
+  const [pace, setPace] = useState({ min: "04", sec: "00", secTotal: 0 });
 
   const updatePace = function (pace) {
-    const paceMin = Number(pace.min);
-    const paceSec = Number(pace.sec);
+    const { min, sec, secTotal } = pace;
     const newPace = {
-      min: `${paceMin}`.padStart(2, "0"),
-      sec: `${paceSec}`.padStart(2, "0"),
+      min: `${Number(min)}`.padStart(2, "0"),
+      sec: `${Number(sec)}`.padStart(2, "0"),
+      secTotal,
     };
     setPace(newPace);
   };
 
   const updateTime = function (time) {
-    const timeHour = Number(time.hour);
-    const timeMin = Number(time.min);
-    const timeSec = Number(time.sec);
+    const { hour, min, sec, secTotal } = time;
     const newTime = {
-      hour: `${timeHour}`.padStart(2, "0"),
-      min: `${timeMin}`.padStart(2, "0"),
-      sec: `${timeSec}`.padStart(2, "0"),
+      hour: `${Number(hour)}`.padStart(2, "0"),
+      min: `${Number(min)}`.padStart(2, "0"),
+      sec: `${Number(sec)}`.padStart(2, "0"),
+      secTotal,
     };
     setTime(newTime);
   };
 
-  const calcAndUpdatePace = function (distance, time) {
+  const calcAndUpdatePace = function (unit, distance, time) {
+    const curDist =
+      unit === "km" ? Number(distance) : Number(distance / convertMiToKm);
     const timeTotal =
-      Number(time.hour) * 60 + Number(time.min) + Number(time.sec) / 60;
-    const paceTotal = timeTotal / Number(distance);
+      Number(time.hour) * 60 + Number(time.min) + time.secTotal / 60;
+    const paceTotal = timeTotal === 0 ? 0 : timeTotal / curDist;
+
     const paceMin = Math.floor(paceTotal);
-    const paceSec = Math.round((paceTotal - paceMin) * 60);
+    const paceSec = (paceTotal - paceMin) * 60;
+
+    let updateSec = false;
+    if (Math.round(paceSec) === 60) updateSec = true;
+
     const newPace = {
-      min: `${paceMin}`.padStart(2, "0"),
-      sec: `${paceSec}`.padStart(2, "0"),
+      min: `${paceMin + (updateSec ? 1 : 0)}`.padStart(2, "0"),
+      sec: `${updateSec ? 0 : Math.round(paceSec)}`.padStart(2, "0"),
+      secTotal: paceSec,
     };
+
     setPace(newPace);
   };
 
-  const calcAndUpdateTime = function (distance, pace) {
+  const calcAndUpdateTime = function (unit, distance, pace) {
+    const curDist =
+      unit === "km" ? Number(distance) : Number(distance / convertMiToKm);
     const paceTotal = Number(pace.min) + Number(pace.sec) / 60;
-    const timeTotal = paceTotal * Number(distance);
+    const timeTotal = paceTotal === 0 ? 0 : paceTotal * curDist;
+
     const timeHour = Math.floor(timeTotal / 60);
     const timeMin = Math.floor(timeTotal - timeHour * 60);
-    const timeSec = Math.round((timeTotal - timeHour * 60 - timeMin) * 60);
+    const timeSec = (timeTotal - timeHour * 60 - timeMin) * 60;
+
     const newTime = {
       hour: `${timeHour}`.padStart(2, "0"),
       min: `${timeMin}`.padStart(2, "0"),
-      sec: `${timeSec}`.padStart(2, "0"),
+      sec: `${Math.round(timeSec)}`.padStart(2, "0"),
+      secTotal: timeSec,
     };
+
     setTime(newTime);
   };
 
-  const handleToggleButton = function () {
-    setIsToggled(!isToggled);
-    const newDistance =
-      unit === "km" ? distance / convertMiToKm : distance * convertMiToKm;
+  const handleToggleUnit = function () {
+    setUnitIsToggled(!unitIsToggled);
+    setInputDistance(
+      unit === "km"
+        ? `${(distance / convertMiToKm).toFixed(2)}`
+        : `${(distance * convertMiToKm).toFixed(2)}`
+    );
 
-    setUnit((unit) => (unit === "km" ? "mi" : "km"));
-    setDistance(`${newDistance.toFixed(2)}`);
+    const newUnit = unit === "km" ? "mi" : "km";
+    setUnit(newUnit);
 
-    calcAndUpdatePace(newDistance, time);
+    calcAndUpdatePace(newUnit, distance, time);
     updateTime(time);
   };
 
@@ -80,66 +102,76 @@ function Calculator() {
     const value = e.target.value;
     let newDistance;
 
-    if (Number.isFinite(Number(value))) {
-      newDistance = Number((Number(value) / convertDistance).toFixed(2));
+    if (Number.isFinite(Number(value.split(" ")[0]))) {
+      const dist = value.split(" ")[0];
+      const unit = value.split(" ")[1];
+      newDistance = unit === "km" ? dist : `${dist * convertMiToKm}`;
+      setShowDist(false);
       setShowInputDist(false);
-      setInputDistIsDisabled(true);
     }
     if (value === "Half Marathon") {
-      newDistance = Number((21.1 / convertDistance).toFixed(2));
-      setShowInputDist(true);
-      setInputDistIsDisabled(true);
+      newDistance = "21.1";
+      setShowDist(true);
+      setShowInputDist(false);
     }
     if (value === "Marathon") {
-      newDistance = Number((42.2 / convertDistance).toFixed(2));
-      setShowInputDist(true);
-      setInputDistIsDisabled(true);
+      newDistance = "42.2";
+      setShowDist(true);
+      setShowInputDist(false);
     }
-    if (value === "Custom") {
-      newDistance = 150;
+    if (value === "Other") {
+      newDistance = "150";
+      setInputDistance(newDistance);
+      setShowDist(false);
       setShowInputDist(true);
-      setInputDistIsDisabled(false);
     }
 
-    setDistance(`${newDistance}`);
-    calcAndUpdateTime(newDistance, pace);
+    setDistance(newDistance);
+    calcAndUpdateTime(unit, newDistance, pace);
     updatePace(pace);
   };
 
   const handleDistanceChange = function (e) {
-    const newDistance = Number(e.target.value);
-    setDistance(`${newDistance}`);
-    calcAndUpdateTime(newDistance, pace);
+    const input = e.target.value;
+    setInputDistance(input);
+
+    const newDistance = unit === "km" ? input : input * convertMiToKm;
+    setDistance(newDistance);
+    calcAndUpdateTime(unit, newDistance, pace);
     updatePace(pace);
   };
 
   const handleTimeChange = function (changedField, newValue) {
     const changedInputField = changedField.split("_")[1];
     const newTime = { ...time, [changedInputField]: newValue };
+    newTime.secTotal = Number(newTime.sec);
     setTime(newTime);
-
-    calcAndUpdatePace(distance, newTime);
+    calcAndUpdatePace(unit, distance, newTime);
   };
 
   const handlePaceChange = function (changedField, newValue) {
     const changedInputField = changedField.split("_")[1];
     const newPace = { ...pace, [changedInputField]: newValue };
+    newPace.secTotal = Number(newPace.sec);
     setPace(newPace);
-
-    calcAndUpdateTime(distance, newPace);
+    calcAndUpdateTime(unit, distance, newPace);
   };
 
   return (
     <section className="section section__calculator">
       <h2>Pace Calculator</h2>
-      <ToggleButton isToggled={isToggled} onToggleButton={handleToggleButton} />
+      <ToggleButton
+        unitIsToggled={unitIsToggled}
+        onToggleButton={handleToggleUnit}
+      />
       <form className="calculator" onSubmit={(e) => e.preventDefault()}>
         <DistanceSegment
           distance={distance}
           unit={unit}
           convertMiToKm={convertMiToKm}
+          showDist={showDist}
           showInputDist={showInputDist}
-          inputDistIsDisabled={inputDistIsDisabled}
+          inputDistance={inputDistance}
           onDistanceSelect={handleDistanceSelect}
           onDistanceChange={handleDistanceChange}
         />

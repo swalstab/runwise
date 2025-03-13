@@ -1,11 +1,4 @@
-function DistanceInput({
-  distance,
-  unit,
-  inputDistIsDisabled,
-  onDistanceChange,
-}) {
-  const styleDisabled = { pointerEvents: inputDistIsDisabled && "none" };
-
+function DistanceInput({ unit, inputDistance, onDistanceChange }) {
   return (
     <>
       <input
@@ -14,8 +7,7 @@ function DistanceInput({
         name="dist"
         placeholder="distance"
         aria-labelledby="label-distance"
-        style={styleDisabled}
-        value={distance}
+        value={inputDistance}
         onChange={onDistanceChange}
       ></input>
       <span> {unit}</span>

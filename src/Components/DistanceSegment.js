@@ -4,8 +4,9 @@ function DistanceSegment({
   distance,
   unit,
   convertMiToKm,
+  showDist,
   showInputDist,
-  inputDistIsDisabled,
+  inputDistance,
   onDistanceSelect,
   onDistanceChange,
 }) {
@@ -17,21 +18,26 @@ function DistanceSegment({
         </label>
         <div className="form__inputs">
           <select className="form__select" onChange={onDistanceSelect}>
-            <option value={5}>5 km</option>
-            <option value={10}>10 km</option>
+            <option value="5 km">5 km</option>
+            <option value="10 km">10 km</option>
             <option value="Half Marathon">Half Marathon</option>
             <option value="Marathon">Marathon</option>
-            <option value={50}>50 km</option>
-            <option value={50 * convertMiToKm}>50 mi</option>
-            <option value={100}>100 km</option>
-            <option value={100 * convertMiToKm}>100 mi</option>
-            <option value="Custom">Custom</option>
+            <option value="50 km">50 km</option>
+            <option value="50 mi">50 mi</option>
+            <option value="100 km">100 km</option>
+            <option value="100 mi">100 mi</option>
+            <option value="Other">Other</option>
           </select>
+          {showDist && (
+            <span>
+              {unit === "km" ? distance : (distance / convertMiToKm).toFixed(2)}{" "}
+              {unit}
+            </span>
+          )}
           {showInputDist && (
             <DistanceInput
-              distance={distance}
               unit={unit}
-              inputDistIsDisabled={inputDistIsDisabled}
+              inputDistance={inputDistance}
               onDistanceChange={onDistanceChange}
             />
           )}
