@@ -54,7 +54,7 @@ h2 {
 }
 
 .smal-font {
-  font-size: 12px;
+  font-size: 1.2rem;
 }
 
 /* -------------------------------------------------------------- */
@@ -215,12 +215,12 @@ tbody tr:hover {
 }
 
 th {
-  padding: 16px 8px;
+  padding: 1.6rem 0.8rem;
 }
 
 td {
   border-top: 2.5px solid var(--color-primary-light);
-  padding: 8px;
+  padding: 0.8rem;
   cursor: pointer;
 }
 
@@ -230,13 +230,13 @@ td:first-child {
 }
 
 th:first-child {
-  width: 35rem;
+  width: 30rem;
   border-top-left-radius: 1.6rem;
   /* border-bottom-left-radius: 1.6rem; */
 }
 
 th:last-child {
-  width: 10rem;
+  width: 8rem;
   border-top-right-radius: 1.6rem;
 }
 
