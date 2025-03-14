@@ -18,28 +18,26 @@ function TimeSegment({
     : timeParts;
 
   return (
-    <section className={`form__segment form__segment--${name}`}>
+    <fieldset className="form__segment">
       <div>
-        <label className="form__label" id={`label-${name}`}>
+        <legend>
           {name[0].toUpperCase() + name.slice(1)}
-        </label>
-        {children}
-        <div className="form__inputs">
-          {timePartsAdjusted.map((part, idx) => (
-            <TimeInput
-              key={`${name}_${part.name}`}
-              name={`${name}_${part.name}`}
-              placeholder={part.placeholder}
-              labelName={name}
-              isFirstEl={idx === 0 ? true : false}
-              curValue={part.value}
-              onTimeChange={onTimeChange}
-              onPaceChange={onPaceChange}
-            />
-          ))}
-        </div>
+          {children}
+        </legend>
+
+        {timePartsAdjusted.map((part, idx) => (
+          <TimeInput
+            key={`${name}_${part.name}`}
+            name={`${name}_${part.name}`}
+            placeholder={part.placeholder}
+            isFirstEl={idx === 0 ? true : false}
+            curValue={part.value}
+            onTimeChange={onTimeChange}
+            onPaceChange={onPaceChange}
+          />
+        ))}
       </div>
-    </section>
+    </fieldset>
   );
 }
 

@@ -156,39 +156,46 @@ h2 {
 }
 
 .calculator,
-.form__select,
-.form__input {
+.input--select,
+.input--text {
   font-size: 1.8rem;
+}
+
+.calculator .btn {
+  margin: 0.8rem 4rem;
 }
 
 .form__segment {
   padding: 0.8rem 4rem;
-  border-right: 2.5px solid var(--color-primary-light);
+  border: none;
+  border-right: 3px solid var(--color-primary-light);
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
-.form__segment--btn {
-  border-right: none;
-  flex-grow: 0;
-}
-
-.form__segment--distance .form__inputs {
+.form__inputs--distance {
   width: 24rem;
 }
 
-.form__label {
+legend {
   font-size: 2.4rem;
-  display: inline-block;
-  margin-bottom: 0.4rem;
+  top: 0.8rem;
+  position: absolute;
 }
 
-.form__select {
+.input--select,
+.input__field {
+  display: inline-block;
+  margin-top: 4rem;
+}
+
+.input--select {
   margin-right: 1.2rem;
 }
 
-.form__input {
+.input--text {
   width: 6rem;
 }
 
@@ -230,13 +237,18 @@ td:first-child {
 }
 
 th:first-child {
-  width: 30rem;
+  width: 28rem;
   border-top-left-radius: 1.6rem;
   /* border-bottom-left-radius: 1.6rem; */
 }
 
+th:nth-child(2),
+th:nth-child(3) {
+  width: 22rem;
+}
+
 th:last-child {
-  width: 8rem;
+  width: 10rem;
   border-top-right-radius: 1.6rem;
 }
 

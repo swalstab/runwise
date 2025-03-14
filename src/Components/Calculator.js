@@ -190,9 +190,7 @@ function Calculator() {
           onTimeChange={handleTimeChange}
         />
 
-        <section className="form__segment form__segment--btn">
-          <button className="btn btn--round">+</button>
-        </section>
+        <button className="btn btn--round">+</button>
       </form>
     </section>
   );

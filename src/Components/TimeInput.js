@@ -1,7 +1,6 @@
 function TimeInput({
   name,
   placeholder,
-  labelName,
   isFirstEl,
   curValue,
   onTimeChange,
@@ -18,17 +17,21 @@ function TimeInput({
   return (
     <>
       {!isFirstEl && <span> : </span>}
-      <input
-        className={`form__input form__input--${name}`}
-        type="text"
-        name={name}
-        // min={0}
-        // max={!isFirstEl ? 59 : undefined}
-        placeholder={placeholder}
-        aria-labelledby={`label-${labelName}`}
-        value={curValue}
-        onChange={handleChange}
-      ></input>
+      <div className="input__field">
+        {/* <label htmlFor={name}>{placeholder}</label> */}
+        <label htmlFor={name}></label>
+        <input
+          className="input--text"
+          type="text"
+          id={name}
+          name={name}
+          // min={0}
+          // max={!isFirstEl ? 59 : undefined}
+          placeholder={placeholder}
+          value={curValue}
+          onChange={handleChange}
+        ></input>
+      </div>
     </>
   );
 }
