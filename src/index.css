@@ -67,6 +67,7 @@ h2 {
   border: none;
   background-color: var(--color-secondary);
   color: #333;
+  font-family: inherit;
   font-size: 3rem;
   font-weight: 700;
   padding: 0.8rem 1.6rem;
@@ -88,6 +89,7 @@ h2 {
 
 .btn--round {
   border-radius: 50%;
+  padding: 0.8rem;
 }
 
 /* TOGGLE BUTTON */
@@ -154,6 +156,11 @@ h2 {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
 }
 
+.calculator .btn {
+  height: 5rem;
+  width: 5rem;
+}
+
 .calculator,
 .input--select,
 .input--text {
@@ -165,7 +172,7 @@ h2 {
 }
 
 .form__segment {
-  padding: 0.8rem 4rem;
+  padding: 0.8rem 2rem;
   border: none;
   border-right: 3px solid var(--color-primary-light);
   flex-grow: 1;
@@ -175,7 +182,7 @@ h2 {
 }
 
 .form__inputs--distance {
-  width: 27.6rem;
+  width: 29.4rem;
 }
 
 legend {
@@ -187,10 +194,12 @@ legend {
 .input--select,
 .input__field {
   display: inline-block;
-  margin-top: 4.8rem;
+  margin-top: 5.2rem;
 }
 
 .input--select {
+  background-color: #fff;
+  outline: none;
   margin-right: 1.2rem;
 }
 
@@ -205,10 +214,11 @@ label {
   left: 6px;
   transform: translateY(-50%);
   transition: 0.3s;
+  pointer-events: none;
 }
 
+.input--select,
 .input--text {
-  width: 5rem;
   font-family: inherit;
   color: inherit;
   border: 2px solid #999;
@@ -218,8 +228,12 @@ label {
   transition: 0.3s;
 }
 
+.input--text {
+  width: 5rem;
+}
+
 .input__distance {
-  width: 9.6rem;
+  width: 9rem;
 }
 
 .input--text:focus {
@@ -232,9 +246,9 @@ label {
   background-color: #fff;
   color: #888;
   top: 0;
-  left: 0.5rem;
+  left: 0.3rem;
   font-size: 1.2rem;
-  padding-left: 1px;
+  padding: 0 3px;
 }
 
 /* SAVED RESULTS */
