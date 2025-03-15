@@ -14,11 +14,13 @@ function DistanceSegment({
     <fieldset className="form__segment">
       <div>
         <legend>Distance</legend>
-        {/* <label className="form__label" id="label-distance">
-          Distance
-        </label> */}
+
         <div className="form__inputs form__inputs--distance">
-          <select className="input--select" onChange={onDistanceSelect}>
+          <select
+            name="distance-select"
+            className="input--select"
+            onChange={onDistanceSelect}
+          >
             <option value="5 km">5 km</option>
             <option value="10 km">10 km</option>
             <option value="Half Marathon">Half Marathon</option>

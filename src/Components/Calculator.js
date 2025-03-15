@@ -14,11 +14,11 @@ function Calculator() {
   const [inputDistance, setInputDistance] = useState("150");
   const [time, setTime] = useState({
     hour: "00",
-    min: "20",
+    min: "25",
     sec: "00",
     secTotal: 0,
   });
-  const [pace, setPace] = useState({ min: "04", sec: "00", secTotal: 0 });
+  const [pace, setPace] = useState({ min: "05", sec: "00", secTotal: 0 });
 
   const updatePace = function (pace) {
     const { min, sec, secTotal } = pace;

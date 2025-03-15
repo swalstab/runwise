@@ -18,8 +18,6 @@ function TimeInput({
     <>
       {!isFirstEl && <span> : </span>}
       <div className="input__field">
-        {/* <label htmlFor={name}>{placeholder}</label> */}
-        <label htmlFor={name}></label>
         <input
           className="input--text"
           type="text"
@@ -27,10 +25,12 @@ function TimeInput({
           name={name}
           // min={0}
           // max={!isFirstEl ? 59 : undefined}
-          placeholder={placeholder}
+          // maxLength={2}
+          required
           value={curValue}
           onChange={handleChange}
         ></input>
+        <label htmlFor={name}>{placeholder}</label>
       </div>
     </>
   );

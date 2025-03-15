@@ -145,7 +145,6 @@ h2 {
 }
 
 /* CALCULATOR */
-
 .calculator {
   padding: 1.6rem 0;
   background-color: #fff;
@@ -176,7 +175,7 @@ h2 {
 }
 
 .form__inputs--distance {
-  width: 24rem;
+  width: 27.6rem;
 }
 
 legend {
@@ -188,19 +187,57 @@ legend {
 .input--select,
 .input__field {
   display: inline-block;
-  margin-top: 4rem;
+  margin-top: 4.8rem;
 }
 
 .input--select {
   margin-right: 1.2rem;
 }
 
+.input__field {
+  position: relative;
+}
+
+label {
+  color: #aaa;
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  transition: 0.3s;
+}
+
 .input--text {
-  width: 6rem;
+  width: 5rem;
+  font-family: inherit;
+  color: inherit;
+  border: 2px solid #999;
+  border-radius: 0.6rem;
+  padding: 1px 4px;
+  padding-top: 2px;
+  transition: 0.3s;
+}
+
+.input__distance {
+  width: 9.6rem;
+}
+
+.input--text:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary-dark);
+}
+
+.input--text:focus ~ label,
+.input--text:valid ~ label {
+  background-color: #fff;
+  color: #888;
+  top: 0;
+  left: 0.5rem;
+  font-size: 1.2rem;
+  padding-left: 1px;
 }
 
 /* SAVED RESULTS */
-
 .saved-results {
   width: 100%;
   border-radius: 1.6rem;
