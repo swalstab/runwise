@@ -29,13 +29,21 @@ function PaceCalculator() {
     return newPace;
   };
 
-  const addResult = function (distanceSelect, distance, unit, time, pace) {
+  const addResult = function (
+    distanceSelect,
+    distance,
+    inputDistance,
+    unit,
+    time,
+    pace
+  ) {
     const convertedPace = calcConvertedPace(unit, distance, time);
 
     setResults((results) => [
       ...results,
       {
-        distance: distanceSelect === "Other" ? "abc" : distanceSelect,
+        distance:
+          distanceSelect === "Other" ? `${inputDistance} ${unit}` : distanceSelect,
         paceKm:
           unit === "km"
             ? `${pace.min.padStart(2, "0")}:${pace.sec.padStart(2, "0")}`

@@ -87,8 +87,8 @@ function Calculator({ convertMiToKm, addResult }) {
 
     setInputDistance(
       unit === "km"
-        ? `${(distance / convertMiToKm).toFixed(2)}`
-        : `${Number(distance).toFixed(2)}`
+        ? `${Number((Number(distance) / convertMiToKm).toFixed(2))}`
+        : `${Number(Number(distance).toFixed(2))}`
     );
 
     const newUnit = unit === "km" ? "mi" : "km";
@@ -121,8 +121,8 @@ function Calculator({ convertMiToKm, addResult }) {
       setShowInputDist(false);
     }
     if (value === "Other") {
-      newDistance = "150";
-      setInputDistance(newDistance);
+      newDistance = unit === "km" ? "150" : (150 * convertMiToKm).toFixed(2);
+      setInputDistance("150");
       setShowDist(false);
       setShowInputDist(true);
     }
@@ -161,7 +161,7 @@ function Calculator({ convertMiToKm, addResult }) {
   const handleButtonAdd = function () {
     updatePace(pace);
     updateTime(time);
-    addResult(distanceSelect, distance, unit, time, pace);
+    addResult(distanceSelect, distance, inputDistance, unit, time, pace);
   };
 
   return (
