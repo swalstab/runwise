@@ -1,12 +1,9 @@
 import SavedResultsData from "./SavedResultsData.js";
 
-function SavedResults() {
-  const results = [
-    { distance: "5 km", paceKm: "04:00", paceMi: "06:26", time: "20:00" },
-    { distance: "10 km", paceKm: "04:00", paceMi: "06:26", time: "40:00" },
-    { distance: "20 km", paceKm: "05:00", paceMi: "10:26", time: "80:00" },
-    { distance: "5 km", paceKm: "04:00", paceMi: "06:26", time: "20:00" },
-  ];
+function SavedResults({ results, removeResult }) {
+  const handleButtonRemove = function (idx) {
+    removeResult(idx);
+  };
 
   return (
     <section className="section section__saved-results">
@@ -14,10 +11,17 @@ function SavedResults() {
       <table className="saved-results">
         <thead>
           <tr>
-            <th scope="col">
+            <th
+              scope="col"
+              style={{
+                borderBottomLeftRadius: results.length === 0 ? "1.6rem" : "",
+              }}
+            >
+              {/* style={results.length===0 && {borderBottomLeftRadius: "1.6rem"}} */}
               Distance
+              {/* <i className="fa-solid fa-filter"></i> */}
               {/* <div>
-                <button>Test</button>
+                <button className="btn"><i className="fa-solid fa-filter"></i></button>
                 <ul>
                   <li>
                     <input type="checkbox"></input>a
@@ -38,17 +42,24 @@ function SavedResults() {
               Pace <span className="smal-font">(min/mi)</span>
             </th>
             <th scope="col">Time</th>
-            <th scope="col"></th>
+            <th
+              scope="col"
+              style={{
+                borderBottomRightRadius: results.length === 0 ? "1.6rem" : "",
+              }}
+            ></th>
           </tr>
         </thead>
         <tbody>
           {results.map((res, idx) => (
             <SavedResultsData
               key={idx}
+              idx={idx}
               distance={res.distance}
               paceKm={res.paceKm}
               paceMi={res.paceMi}
               time={res.time}
+              onClick={() => handleButtonRemove(idx)}
             />
           ))}
         </tbody>

@@ -1,11 +1,9 @@
-import Calculator from "./Calculator.js";
-import SavedResults from "./SavedResults.js";
+import PaceCalculator from "./PaceCalculator.js";
 
 function Main() {
   return (
     <main className="container">
-      <Calculator />
-      <SavedResults />
+      <PaceCalculator />
     </main>
   );
 }

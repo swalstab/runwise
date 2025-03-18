@@ -3,12 +3,11 @@ import ToggleButton from "./ToggleButton.js";
 import DistanceSegment from "./DistanceSegment.js";
 import TimeSegment from "./TimeSegment.js";
 
-function Calculator() {
-  const convertMiToKm = 1.60934;
-
+function Calculator({ convertMiToKm, addResult }) {
   const [unit, setUnit] = useState("km");
   const [unitIsToggled, setUnitIsToggled] = useState(false);
   const [distance, setDistance] = useState("5");
+  const [distanceSelect, setDistanceSelect] = useState("5 km");
   const [showDist, setShowDist] = useState(false);
   const [showInputDist, setShowInputDist] = useState(false);
   const [inputDistance, setInputDistance] = useState("150");
@@ -84,11 +83,12 @@ function Calculator() {
   };
 
   const handleToggleUnit = function () {
-    setUnitIsToggled(!unitIsToggled);
+    setUnitIsToggled((unitIsToggled) => !unitIsToggled);
+
     setInputDistance(
       unit === "km"
         ? `${(distance / convertMiToKm).toFixed(2)}`
-        : `${(distance * convertMiToKm).toFixed(2)}`
+        : `${Number(distance).toFixed(2)}`
     );
 
     const newUnit = unit === "km" ? "mi" : "km";
@@ -100,6 +100,7 @@ function Calculator() {
 
   const handleDistanceSelect = function (e) {
     const value = e.target.value;
+    setDistanceSelect(e.target.value);
     let newDistance;
 
     if (Number.isFinite(Number(value.split(" ")[0]))) {
@@ -157,6 +158,12 @@ function Calculator() {
     calcAndUpdateTime(unit, distance, newPace);
   };
 
+  const handleButtonAdd = function () {
+    updatePace(pace);
+    updateTime(time);
+    addResult(distanceSelect, distance, unit, time, pace);
+  };
+
   return (
     <section className="section section__calculator">
       <h2>Pace Calculator</h2>
@@ -190,7 +197,9 @@ function Calculator() {
           onTimeChange={handleTimeChange}
         />
 
-        <button className="btn btn--round">+</button>
+        <button className="btn btn--round" onClick={handleButtonAdd}>
+          +
+        </button>
       </form>
     </section>
   );

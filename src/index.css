@@ -148,9 +148,10 @@ h2 {
 
 /* CALCULATOR */
 .calculator {
-  padding: 1.6rem 0;
-  background-color: #fff;
   border-radius: 1.6rem;
+  background-color: #fff;
+  font-size: 1.8rem;
+  padding: 1.6rem 0;
   display: flex;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
@@ -159,36 +160,27 @@ h2 {
 .calculator .btn {
   height: 5rem;
   width: 5rem;
-}
-
-.calculator,
-.input--select,
-.input--text {
-  font-size: 1.8rem;
-}
-
-.calculator .btn {
   margin: 0.8rem 4rem;
 }
 
 .form__segment {
-  padding: 0.8rem 2rem;
   border: none;
   border-right: 3px solid var(--color-primary-light);
+  padding: 0.8rem 3rem;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   position: relative;
 }
 
-.form__inputs--distance {
-  width: 29.4rem;
-}
-
 legend {
   font-size: 2.4rem;
   top: 0.8rem;
   position: absolute;
+}
+
+.form__inputs--distance {
+  width: 29.4rem;
 }
 
 .input--select,
@@ -207,19 +199,10 @@ legend {
   position: relative;
 }
 
-label {
-  color: #aaa;
-  position: absolute;
-  top: 50%;
-  left: 6px;
-  transform: translateY(-50%);
-  transition: 0.3s;
-  pointer-events: none;
-}
-
 .input--select,
 .input--text {
   font-family: inherit;
+  font-size: inherit;
   color: inherit;
   border: 2px solid #999;
   border-radius: 0.6rem;
@@ -236,9 +219,20 @@ label {
   width: 9rem;
 }
 
+.input--select:focus,
 .input--text:focus {
   outline: none;
-  border: 2px solid var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+}
+
+label {
+  color: #aaa;
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  transition: 0.3s;
+  pointer-events: none;
 }
 
 .input--text:focus ~ label,
@@ -290,7 +284,6 @@ td:first-child {
 th:first-child {
   width: 28rem;
   border-top-left-radius: 1.6rem;
-  /* border-bottom-left-radius: 1.6rem; */
 }
 
 th:nth-child(2),
@@ -301,6 +294,14 @@ th:nth-child(3) {
 th:last-child {
   width: 10rem;
   border-top-right-radius: 1.6rem;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 1.6rem;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 1.6rem;
 }
 
 tr .btn {
