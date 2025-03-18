@@ -35,7 +35,7 @@ body {
 }
 
 .container {
-  max-width: 100rem;
+  max-width: 110rem;
   margin: 6.4rem auto;
 }
 
@@ -175,6 +175,7 @@ h2 {
 
 legend {
   font-size: 2.4rem;
+  font-weight: 700;
   top: 0.8rem;
   position: absolute;
 }
@@ -282,13 +283,13 @@ td:first-child {
 }
 
 th:first-child {
-  width: 28rem;
+  width: 30rem;
   border-top-left-radius: 1.6rem;
 }
 
 th:nth-child(2),
 th:nth-child(3) {
-  width: 22rem;
+  width: 24rem;
 }
 
 th:last-child {

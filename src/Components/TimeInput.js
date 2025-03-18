@@ -25,7 +25,7 @@ function TimeInput({
           name={name}
           // min={0}
           // max={!isFirstEl ? 59 : undefined}
-          // maxLength={2}
+          maxLength={!isFirstEl ? 2 : undefined}
           required
           value={curValue}
           onChange={handleChange}
