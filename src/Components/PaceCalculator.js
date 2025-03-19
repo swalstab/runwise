@@ -43,7 +43,9 @@ function PaceCalculator() {
       ...results,
       {
         distance:
-          distanceSelect === "Other" ? `${inputDistance} ${unit}` : distanceSelect,
+          distanceSelect === "Other"
+            ? `${inputDistance} ${unit}`
+            : distanceSelect,
         paceKm:
           unit === "km"
             ? `${pace.min.padStart(2, "0")}:${pace.sec.padStart(2, "0")}`

@@ -1,6 +1,9 @@
+import FilterItem from "./FilterItem.js";
 import SavedResultsData from "./SavedResultsData.js";
 
 function SavedResults({ results, removeResult }) {
+  const distanceUnique = [...new Set(results.map((res) => res.distance))];
+
   const handleButtonRemove = function (idx) {
     removeResult(idx);
   };
@@ -17,23 +20,15 @@ function SavedResults({ results, removeResult }) {
                 borderBottomLeftRadius: results.length === 0 ? "1.6rem" : "",
               }}
             >
-              {/* style={results.length===0 && {borderBottomLeftRadius: "1.6rem"}} */}
               Distance
-              {/* <i className="fa-solid fa-filter"></i> */}
-              {/* <div>
-                <button className="btn"><i className="fa-solid fa-filter"></i></button>
-                <ul>
-                  <li>
-                    <input type="checkbox"></input>a
-                  </li>
-                  <li>
-                    <input type="checkbox"></input>b
-                  </li>
-                  <li>
-                    <input type="checkbox"></input>c
-                  </li>
+              <div className="container--icons">
+                <i className="fa-solid fa-filter fa-sm"></i>
+                <ul className="container--filter">
+                  {distanceUnique.map((dist) => (
+                    <FilterItem key={dist} dist={dist} />
+                  ))}
                 </ul>
-              </div> */}
+              </div>
             </th>
             <th scope="col">
               Pace <span className="smal-font">(min/km)</span>

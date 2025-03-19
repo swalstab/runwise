@@ -226,7 +226,7 @@ legend {
   border-color: var(--color-secondary-dark);
 }
 
-label {
+.input__field--label {
   color: #aaa;
   position: absolute;
   top: 50%;
@@ -236,8 +236,8 @@ label {
   pointer-events: none;
 }
 
-.input--text:focus ~ label,
-.input--text:valid ~ label {
+.input--text:focus ~ .input__field--label,
+.input--text:valid ~ .input__field--label {
   background-color: #fff;
   color: #888;
   top: 0;
@@ -261,6 +261,32 @@ thead {
   background-color: var(--color-primary-light);
   font-size: 2.4rem;
   text-align: left;
+}
+
+.container--icons {
+  position: relative;
+  display: inline-block;
+  margin-left: 1.2rem;
+}
+
+.container--filter {
+  position: absolute;
+  top: 3.5rem;
+  left: 0rem;
+
+  width: 16rem;
+
+  font-size: 1.8rem;
+  font-weight: 400;
+  background-color: #fff;
+  border: 2px solid #999;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
+  padding: 2px 4px 2px 8px;
+  list-style: none;
+  z-index: 1;
+
+  /* display: none; */
 }
 
 tbody tr:hover {
@@ -292,6 +318,10 @@ th:nth-child(3) {
   width: 24rem;
 }
 
+th:nth-child(4) {
+  width: 22rem;
+}
+
 th:last-child {
   width: 10rem;
   border-top-right-radius: 1.6rem;
@@ -305,12 +335,13 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 1.6rem;
 }
 
-tr .btn {
+tr .btn--round {
   background-color: #ccc;
+  font-size: 2.4rem;
   width: 4rem;
   height: 4rem;
 }
 
-tr .btn:hover {
+tr .btn--round:hover {
   background-color: #bbb;
 }

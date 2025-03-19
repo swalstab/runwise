@@ -30,7 +30,9 @@ function TimeInput({
           value={curValue}
           onChange={handleChange}
         ></input>
-        <label htmlFor={name}>{placeholder}</label>
+        <label className="input__field--label" htmlFor={name}>
+          {placeholder}
+        </label>
       </div>
     </>
   );

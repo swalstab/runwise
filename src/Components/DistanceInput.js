@@ -10,7 +10,9 @@ function DistanceInput({ unit, inputDistance, onDistanceChange }) {
         value={inputDistance}
         onChange={onDistanceChange}
       ></input>
-      <label htmlFor="distance">distance</label>
+      <label className="input__field--label" htmlFor="distance">
+        distance
+      </label>
       <span> {unit}</span>
     </div>
   );
