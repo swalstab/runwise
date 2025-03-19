@@ -11,7 +11,7 @@ function SavedResults({ results, removeResult }) {
   return (
     <section className="section section__saved-results">
       <h2>Saved Results</h2>
-      <table className="saved-results">
+      <table className="saved-results box-shadow">
         <thead>
           <tr>
             <th
@@ -23,7 +23,7 @@ function SavedResults({ results, removeResult }) {
               Distance
               <div className="container--icons">
                 <i className="fa-solid fa-filter fa-sm"></i>
-                <ul className="container--filter">
+                <ul className="container--filter box-shadow">
                   {distanceUnique.map((dist) => (
                     <FilterItem key={dist} dist={dist} />
                   ))}

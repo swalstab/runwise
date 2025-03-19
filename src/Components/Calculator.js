@@ -171,7 +171,10 @@ function Calculator({ convertMiToKm, addResult }) {
         unitIsToggled={unitIsToggled}
         onToggleButton={handleToggleUnit}
       />
-      <form className="calculator" onSubmit={(e) => e.preventDefault()}>
+      <form
+        className="calculator box-shadow"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <DistanceSegment
           distance={distance}
           unit={unit}
@@ -197,7 +200,7 @@ function Calculator({ convertMiToKm, addResult }) {
           onTimeChange={handleTimeChange}
         />
 
-        <button className="btn btn--round" onClick={handleButtonAdd}>
+        <button className="btn btn--round box-shadow" onClick={handleButtonAdd}>
           +
         </button>
       </form>

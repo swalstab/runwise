@@ -6,7 +6,7 @@ function SavedResultsData({ idx, distance, paceKm, paceMi, time, onClick }) {
       <td>{paceMi}</td>
       <td>{time}</td>
       <td>
-        <button className="btn btn--round" onClick={onClick}>
+        <button className="btn btn--round box-shadow" onClick={onClick}>
           <i className="fa-regular fa-trash-can"></i>
         </button>
       </td>

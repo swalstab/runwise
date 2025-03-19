@@ -21,9 +21,9 @@ FONT SIZE SYSTEM (px)
   box-sizing: border-box;
 }
 
-/* -------------------------------------------------------------- */
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* GENERAL STYLES */
-/* -------------------------------------------------------------- */
+/* /////////////////////////////////////////////////////////////////////////////////// */
 html {
   font-size: 62.5%;
 }
@@ -57,9 +57,13 @@ h2 {
   font-size: 1.2rem;
 }
 
-/* -------------------------------------------------------------- */
+.box-shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* COMPONENT STYLES */
-/* -------------------------------------------------------------- */
+/* /////////////////////////////////////////////////////////////////////////////////// */
 
 /* BUTTONS */
 .btn {
@@ -76,7 +80,6 @@ h2 {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
 }
 
 .btn:hover {
@@ -92,6 +95,7 @@ h2 {
   padding: 0.8rem;
 }
 
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* TOGGLE BUTTON */
 .container--toggle {
   font-size: 1.6rem;
@@ -139,13 +143,16 @@ h2 {
   font-weight: 700;
 }
 
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* NAVIGATION */
 
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* HEADER */
 .header {
   border-top: 80px solid var(--color-primary);
 }
 
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* CALCULATOR */
 .calculator {
   border-radius: 1.6rem;
@@ -154,7 +161,6 @@ h2 {
   padding: 1.6rem 0;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
 }
 
 .calculator .btn {
@@ -246,13 +252,13 @@ legend {
   padding: 0 3px;
 }
 
+/* /////////////////////////////////////////////////////////////////////////////////// */
 /* SAVED RESULTS */
 .saved-results {
   width: 100%;
   border-radius: 1.6rem;
   background-color: #fff;
   font-size: 1.8rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -279,7 +285,6 @@ thead {
   background-color: #fff;
   border: 2px solid #999;
   border-radius: 0.6rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 24px 0 rgba(0, 0, 0, 0.08);
   padding: 2px 4px 2px 8px;
   list-style: none;
   z-index: 1;

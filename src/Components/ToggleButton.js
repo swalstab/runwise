@@ -9,7 +9,7 @@ function ToggleButton({ unitIsToggled, onToggleButton }) {
         km
       </span>
 
-      <button className="btn btn--toggle" onClick={onToggleButton}>
+      <button className="btn btn--toggle box-shadow" onClick={onToggleButton}>
         <div className={`slider ${!unitIsToggled ? "slider--left" : ""}`}></div>
       </button>
 
