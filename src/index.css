@@ -271,11 +271,9 @@ thead {
 
 .container--filter {
   position: absolute;
-  top: 3.5rem;
-  left: 0rem;
-
-  width: 16rem;
-
+  top: 4rem;
+  left: -0.8rem;
+  width: 17rem;
   font-size: 1.8rem;
   font-weight: 400;
   background-color: #fff;
@@ -287,6 +285,30 @@ thead {
   z-index: 1;
 
   /* display: none; */
+}
+
+.container--filter input {
+  margin-right: 10px;
+}
+
+.container--filter input:not(:disabled)::before {
+  position: relative;
+  top: -1.5px;
+  left: -1.5px;
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #999;
+  border-radius: 4px;
+  background-color: #fff;
+  content: "";
+  z-index: 1;
+}
+
+.container--filter input:checked::before {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  content: "";
 }
 
 tbody tr:hover {
