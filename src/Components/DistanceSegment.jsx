@@ -1,4 +1,4 @@
-import DistanceInput from "./DistanceInput.js";
+import DistanceInput from "./DistanceInput.jsx";
 
 function DistanceSegment({
   distance,

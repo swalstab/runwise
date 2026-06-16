@@ -1,4 +1,4 @@
-import PaceCalculator from "./PaceCalculator.js";
+import PaceCalculator from "./PaceCalculator.jsx";
 
 function Main() {
   return (

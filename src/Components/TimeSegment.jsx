@@ -1,4 +1,4 @@
-import TimeInput from "./TimeInput.js";
+import TimeInput from "./TimeInput.jsx";
 
 function TimeSegment({
   children,

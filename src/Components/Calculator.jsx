@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ToggleButton from "./ToggleButton.js";
-import DistanceSegment from "./DistanceSegment.js";
-import TimeSegment from "./TimeSegment.js";
+import ToggleButton from "./ToggleButton.jsx";
+import DistanceSegment from "./DistanceSegment.jsx";
+import TimeSegment from "./TimeSegment.jsx";
 
 function Calculator({ convertMiToKm, addResult }) {
   const [unit, setUnit] = useState("km");
